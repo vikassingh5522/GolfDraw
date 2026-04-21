@@ -20,7 +20,7 @@ const allowedOrigins = process.env.CORS_ORIGINS
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin) return callback(null, true);
-    if (allowedOrigins.some(o => origin === o || origin.endsWith('.vercel.app') && o.endsWith('.vercel.app'))) {
+    if (allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
       return callback(null, true);
     }
     callback(new Error('Not allowed by CORS'));
